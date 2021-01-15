@@ -54,8 +54,8 @@ class _MyAppState extends State<MyApp> {
     }
 
     jpush.setup(
-      appKey: "xxxxx", //你自己应用的 AppKey
-      channel: "theChannel",
+      appKey: "759e294069bfaa0167d7db4a", //你自己应用的 AppKey
+      channel: "developer-default",
       production: false,
       debug: true,
     );

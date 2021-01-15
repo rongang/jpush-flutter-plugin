@@ -35,5 +35,13 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="XIAOMI_APPKEY"
+            android:value="${XIAOMI_APPKEY}" />
+
+        <meta-data
+            android:name="XIAOMI_APPID"
+            android:value="${XIAOMI_APPID}" />
+
     </application>
 </manifest>

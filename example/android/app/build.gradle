@@ -38,7 +38,7 @@ android {
 
 //        applicationId "com.jiguang.jpushexample"
 
-        applicationId "com.shikk.testJpush" //JPush 上注册的包名.
+        applicationId "com.jiguang.jpush" //JPush 上注册的包名.
 
         minSdkVersion 17
         targetSdkVersion 28
@@ -54,10 +54,14 @@ android {
             // 还可以添加
         }
 
+
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "31c7c1b2cf59c1d42895a782", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_PKGNAME : "com.jiguang.jpush",
+                JPUSH_APPKEY : "759e294069bfaa0167d7db4a", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+
+                XIAOMI_APPID  : "MI-2882303761518978260",
+                XIAOMI_APPKEY : "MI-5311897878260",
         ]
     }
     signingConfigs {

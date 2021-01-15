@@ -27,6 +27,12 @@ android {
     defaultConfig {
         minSdkVersion 17
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                XIAOMI_APPID : "",
+                XIAOMI_APPKEY: "",
+        ]
+
+
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -38,5 +44,7 @@ dependencies {
     implementation 'cn.jiguang.sdk:jcore:2.6.0'
 //    implementation 'com.android.support:appcompat-v7:28.+'
     compileOnly files('libs/flutter.jar')
+
+    implementation 'cn.jiguang.sdk.plugin:xiaomi:3.9.0'//版本号和对应的JPush版本号相同
 
 }
