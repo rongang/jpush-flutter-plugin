@@ -33,12 +33,15 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
 
 //        applicationId "com.jiguang.jpushexample"
 
-        applicationId "com.shikk.testJpush" //JPush 上注册的包名.
+        applicationId "com.jiguang.jpush" //JPush 上注册的包名.
 
         minSdkVersion 17
         targetSdkVersion 28
@@ -54,10 +57,18 @@ android {
             // 还可以添加
         }
 
+
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
-                JPUSH_APPKEY : "31c7c1b2cf59c1d42895a782", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_PKGNAME : "com.jiguang.jpush",
+                JPUSH_APPKEY : "759e294069bfaa0167d7db4a", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+
+                XIAOMI_APPID  : "MI-2882303761518978260",
+                XIAOMI_APPKEY : "MI-5311897878260",
+
+                OPPO_APPKEY : "OP-330b4bb0e32e4d219f50bb5f41e3b6ab", // OPPO平台注册的appkey
+                OPPO_APPID : "OP-30458459", // OPPO平台注册的appid
+                OPPO_APPSECRET: "OP-000a4576c9eb4fc588d53af0edb47a3c"//OPPO平台注册的appsecret
         ]
     }
     signingConfigs {
@@ -93,4 +104,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.huawei.hms:push:5.0.2.300'
+//    implementation 'com.huawei.hms:hianalytics:2.3.0.302'
+    //引入极光-华为插件，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
+    implementation 'cn.jiguang.sdk.plugin:huawei:3.9.0'
 }

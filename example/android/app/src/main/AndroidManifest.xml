@@ -1,4 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jiguang.jpushexample">
 
     <!-- The INTERNET permission is required for development. Specifically,
@@ -15,7 +16,8 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="jpush_example"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        tools:replace="android:label">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -34,6 +36,29 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <intent-filter>
+                <data
+                    android:scheme="jpush" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
         </activity>
+        <meta-data
+            android:name="XIAOMI_APPKEY"
+            android:value="${XIAOMI_APPKEY}" />
+
+        <meta-data
+            android:name="XIAOMI_APPID"
+            android:value="${XIAOMI_APPID}" />
+        <meta-data android:name="OPPO_APPKEY"
+            android:value="OP-330b4bb0e32e4d219f50bb5f41e3b6ab" />
+
+        <meta-data android:name="OPPO_APPID"
+            android:value="OP-30458459" />
+
+        <meta-data android:name="OPPO_APPSECRET"
+            android:value="OP-000a4576c9eb4fc588d53af0edb47a3c" />
+
     </application>
 </manifest>

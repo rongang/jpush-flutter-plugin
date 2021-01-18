@@ -120,7 +120,7 @@ public class JPushPlugin implements MethodCallHandler {
 
     // 主线程再返回数据
     public void runMainThread(final Map<String,Object> map, final Result result, final String method) {
-        Log.d(TAG,"runMainThread:" + "map = " + map + ",method =" + method);
+        Log.i(TAG,"runMainThread:" + "map = " + map + ",method =" + method);
         android.os.Handler handler = new Handler(Looper.getMainLooper());
         handler.post(new Runnable() {
             @Override
@@ -135,7 +135,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void setup(MethodCall call, Result result) {
-        Log.d(TAG,"setup :" + call.arguments);
+        Log.i(TAG,"setup :" + call.arguments);
 
         HashMap<String, Object> map = call.arguments();
         boolean debug = (boolean)map.get("debug");
@@ -153,7 +153,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void scheduleCache() {
-        Log.d(TAG,"scheduleCache:");
+        Log.i(TAG,"scheduleCache:");
 
         List<Object> tempList = new ArrayList<Object>();
 
@@ -168,7 +168,7 @@ public class JPushPlugin implements MethodCallHandler {
         }
 
         if (registrar == null || registrar.context() == null) {
-            Log.d(TAG,"scheduleCache，register context is nil.");
+            Log.i(TAG,"scheduleCache，register context is nil.");
             return;
         }
 
@@ -179,7 +179,7 @@ public class JPushPlugin implements MethodCallHandler {
             tempList.clear();
             List<Result> resultList = JPushPlugin.instance.getRidCache;
             for (Result res: resultList) {
-                Log.d(TAG,"scheduleCache rid = " + rid);
+                Log.i(TAG,"scheduleCache rid = " + rid);
                 res.success(rid);
                 tempList.add(res);
             }
@@ -188,7 +188,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void setTags(MethodCall call, Result result) {
-        Log.d(TAG,"setTags：");
+        Log.i(TAG,"setTags：");
 
         List<String>tagList = call.arguments();
         Set<String> tags = new HashSet<>(tagList);
@@ -198,7 +198,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void cleanTags(MethodCall call, Result result) {
-        Log.d(TAG,"cleanTags:");
+        Log.i(TAG,"cleanTags:");
 
         sequence += 1;
         callbackMap.put(sequence, result);
@@ -206,7 +206,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void addTags(MethodCall call, Result result) {
-        Log.d(TAG,"addTags: " + call.arguments);
+        Log.i(TAG,"addTags: " + call.arguments);
 
         List<String>tagList = call.arguments();
         Set<String> tags = new HashSet<>(tagList);
@@ -216,7 +216,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void deleteTags(MethodCall call, Result result) {
-        Log.d(TAG,"deleteTags： " + call.arguments);
+        Log.i(TAG,"deleteTags： " + call.arguments);
 
         List<String>tagList = call.arguments();
         Set<String> tags = new HashSet<>(tagList);
@@ -226,7 +226,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void getAllTags(MethodCall call, Result result) {
-        Log.d(TAG,"getAllTags： ");
+        Log.i(TAG,"getAllTags： ");
 
         sequence += 1;
         callbackMap.put(sequence, result);
@@ -234,7 +234,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void setAlias(MethodCall call, Result result) {
-        Log.d(TAG,"setAlias: " + call.arguments);
+        Log.i(TAG,"setAlias: " + call.arguments);
 
         String alias= call.arguments();
         sequence += 1;
@@ -243,7 +243,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void deleteAlias(MethodCall call, Result result) {
-        Log.d(TAG,"deleteAlias:");
+        Log.i(TAG,"deleteAlias:");
 
         String alias= call.arguments();
         sequence += 1;
@@ -252,24 +252,24 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void stopPush(MethodCall call, Result result) {
-        Log.d(TAG,"stopPush:");
+        Log.i(TAG,"stopPush:");
 
         JPushInterface.stopPush(registrar.context());
     }
 
     public void resumePush(MethodCall call, Result result) {
-        Log.d(TAG,"resumePush:");
+        Log.i(TAG,"resumePush:");
 
         JPushInterface.resumePush(registrar.context());
     }
 
     public void clearAllNotifications(MethodCall call, Result result) {
-        Log.d(TAG,"clearAllNotifications: ");
+        Log.i(TAG,"clearAllNotifications: ");
 
         JPushInterface.clearAllNotifications(registrar.context());
     }
     public void clearNotification(MethodCall call, Result result) {
-        Log.d(TAG,"clearNotification: ");
+        Log.i(TAG,"clearNotification: ");
         Object id = call.arguments;
         if (id != null) {
             JPushInterface.clearNotificationById(registrar.context(),(int)id);
@@ -277,13 +277,13 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void getLaunchAppNotification(MethodCall call, Result result) {
-        Log.d(TAG,"");
+        Log.i(TAG,"");
 
 
     }
 
     public void getRegistrationID(MethodCall call, Result result) {
-        Log.d(TAG,"getRegistrationID: ");
+        Log.i(TAG,"getRegistrationID: ");
 
         String rid = JPushInterface.getRegistrationID(registrar.context());
         if (rid == null || rid.isEmpty()) {
@@ -295,7 +295,7 @@ public class JPushPlugin implements MethodCallHandler {
 
 
     public void sendLocalNotification(MethodCall call, Result result) {
-        Log.d(TAG,"sendLocalNotification: " + call.arguments);
+        Log.i(TAG,"sendLocalNotification: " + call.arguments);
 
         try {
             HashMap<String, Object> map = call.arguments();
@@ -322,7 +322,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     public void setBadge(MethodCall call, Result result) {
-        Log.d(TAG,"setBadge: " + call.arguments);
+        Log.i(TAG,"setBadge: " + call.arguments);
 
         HashMap<String, Object> map = call.arguments();
         Object numObject = map.get("badge");
@@ -335,7 +335,7 @@ public class JPushPlugin implements MethodCallHandler {
 
     /// 检查当前应用的通知开关是否开启
     private void isNotificationEnabled(MethodCall call, Result result) {
-        Log.d(TAG,"isNotificationEnabled: ");
+        Log.i(TAG,"isNotificationEnabled: ");
         int isEnabled = JPushInterface.isNotificationEnabled(registrar.context());
         //1表示开启，0表示关闭，-1表示检测失败
         HashMap<String, Object> map = new HashMap();
@@ -345,7 +345,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     private void openSettingsForNotification(MethodCall call, Result result) {
-        Log.d(TAG,"openSettingsForNotification: " );
+        Log.i(TAG,"openSettingsForNotification: " );
 
         JPushInterface.goToAppNotificationSettings(registrar.context());
 
@@ -371,7 +371,7 @@ public class JPushPlugin implements MethodCallHandler {
 
             if (action.equals(JPushInterface.ACTION_REGISTRATION_ID)) {
                 String rId = intent.getStringExtra(JPushInterface.EXTRA_REGISTRATION_ID);
-                Log.d("JPushPlugin","on get registration");
+                Log.i("JPushPlugin","on get registration");
                 JPushPlugin.transmitReceiveRegistrationId(rId);
 
             } else if (action.equals(JPushInterface.ACTION_MESSAGE_RECEIVED)) {
@@ -384,7 +384,7 @@ public class JPushPlugin implements MethodCallHandler {
         }
 
         private void handlingMessageReceive(Intent intent) {
-            Log.d(TAG,"handlingMessageReceive " + intent.getAction());
+            Log.i(TAG,"handlingMessageReceive " + intent.getAction());
 
             String msg = intent.getStringExtra(JPushInterface.EXTRA_MESSAGE);
             Map<String, Object> extras = getNotificationExtras(intent);
@@ -392,7 +392,7 @@ public class JPushPlugin implements MethodCallHandler {
         }
 
         private void handlingNotificationOpen(Context context, Intent intent) {
-            Log.d(TAG,"handlingNotificationOpen " + intent.getAction());
+            Log.i(TAG,"handlingNotificationOpen " + intent.getAction());
 
             String title = intent.getStringExtra(JPushInterface.EXTRA_NOTIFICATION_TITLE);
             String alert = intent.getStringExtra(JPushInterface.EXTRA_ALERT);
@@ -408,7 +408,7 @@ public class JPushPlugin implements MethodCallHandler {
         }
 
         private void handlingNotificationReceive(Context context, Intent intent) {
-            Log.d(TAG,"handlingNotificationReceive " + intent.getAction());
+            Log.i(TAG,"handlingNotificationReceive " + intent.getAction());
 
             String title = intent.getStringExtra(JPushInterface.EXTRA_NOTIFICATION_TITLE);
             String alert = intent.getStringExtra(JPushInterface.EXTRA_ALERT);
@@ -417,7 +417,7 @@ public class JPushPlugin implements MethodCallHandler {
         }
 
         private Map<String, Object> getNotificationExtras(Intent intent) {
-            Log.d(TAG,"");
+            Log.i(TAG,"");
 
             Map<String, Object> extrasMap = new HashMap<String, Object>();
             for (String key : intent.getExtras().keySet()) {
@@ -431,11 +431,41 @@ public class JPushPlugin implements MethodCallHandler {
             }
             return extrasMap;
         }
+        private String getPushSDKName(byte whichPushSDK) {
+            String name;
+            switch (whichPushSDK){
+                case 1:
+                    name = "xiaomi";
+                    break;
+                case 2:
+                    name = "huawei";
+                    break;
+                case 3:
+                    name = "meizu";
+                    break;
+                case 4:
+                    name= "oppo";
+                    break;
+                case 5:
+                    name = "vivo";
+                    break;
+                case 6:
+                    name = "asus";
+                    break;
+                case 8:
+                    name = "fcm";
+                    break;
+                case 0:
+                default:
+                    name = "jpush";
+            }
+            return name;
+        }
     }
 
 
     static void transmitMessageReceive(String message, Map<String, Object> extras) {
-        Log.d(TAG,"transmitMessageReceive " + "message=" + message + "extras=" + extras);
+        Log.i(TAG,"transmitMessageReceive " + "message=" + message + "extras=" + extras);
 
         if (instance == null) {
             return;
@@ -448,7 +478,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     static void transmitNotificationOpen(String title, String alert, Map<String, Object> extras) {
-        Log.d(TAG,"transmitNotificationOpen " + "title=" + title + "alert=" + alert + "extras=" + extras);
+        Log.i(TAG,"transmitNotificationOpen " + "title=" + title + "alert=" + alert + "extras=" + extras);
 
         Map<String, Object> notification= new HashMap<>();
         notification.put("title", title);
@@ -457,12 +487,12 @@ public class JPushPlugin implements MethodCallHandler {
         JPushPlugin.openNotificationCache.add(notification);
 
         if (instance == null) {
-            Log.d("JPushPlugin", "the instance is null");
+            Log.i("JPushPlugin", "the instance is null");
             return;
         }
 
         if (instance.dartIsReady) {
-            Log.d("JPushPlugin", "instance.dartIsReady is true");
+            Log.i("JPushPlugin", "instance.dartIsReady is true");
             JPushPlugin.instance.channel.invokeMethod("onOpenNotification", notification);
             JPushPlugin.openNotificationCache.remove(notification);
         }
@@ -470,7 +500,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     static void transmitNotificationReceive(String title, String alert, Map<String, Object> extras) {
-        Log.d(TAG,"transmitNotificationReceive " + "title=" + title + "alert=" + alert + "extras=" + extras);
+        Log.i(TAG,"transmitNotificationReceive " + "title=" + title + "alert=" + alert + "extras=" + extras);
 
         if (instance == null) {
             return;
@@ -484,7 +514,7 @@ public class JPushPlugin implements MethodCallHandler {
     }
 
     static void transmitReceiveRegistrationId(String rId) {
-        Log.d(TAG,"transmitReceiveRegistrationId： " + rId);
+        Log.i(TAG,"transmitReceiveRegistrationId： " + rId);
 
         if (instance == null) {
             return;

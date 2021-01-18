@@ -54,8 +54,8 @@ class _MyAppState extends State<MyApp> {
     }
 
     jpush.setup(
-      appKey: "xxxxx", //你自己应用的 AppKey
-      channel: "theChannel",
+      appKey: "759e294069bfaa0167d7db4a", //你自己应用的 AppKey
+      channel: "developer-default",
       production: false,
       debug: true,
     );
@@ -229,7 +229,7 @@ class _MyAppState extends State<MyApp> {
                 new CustomButton(
                     title: "setAlias",
                     onPressed: () {
-                      jpush.setAlias("thealias11").then((map) {
+                      jpush.setAlias("testalias01").then((map) {
                         setState(() {
                           debugLable = "setAlias success: $map";
                         });
@@ -318,6 +318,18 @@ class _MyAppState extends State<MyApp> {
                   title: "打开系统设置",
                   onPressed: () {
                     jpush.openSettingsForNotification();
+                  }),
+              new CustomButton(
+                  title: "获取厂商推送信息",
+                  onPressed: () {
+                    MethodChannel jpushMessage = MethodChannel('jpushMessage');
+                    jpushMessage.invokeMethod('jpushMessage').then((value) {
+                      print('$value');
+                      debugLable = value ;
+                      setState(() {
+
+                      });
+                    });
                   }),
             ],
           ),
