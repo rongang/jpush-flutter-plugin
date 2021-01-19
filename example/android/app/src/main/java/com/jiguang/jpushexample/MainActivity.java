@@ -43,10 +43,19 @@ public class MainActivity extends FlutterActivity {
             @Override
             public void onMethodCall(@NonNull MethodCall call, @NonNull MethodChannel.Result result) {
                 if (channel.equals(call.method)) {
-                    if (intentStart.getExtras() != null)
-                        result.success(intentStart.getExtras().getString(JMessageExtra));
-                    else
-                        result.success("intent getExtras null");
+                    if (intentStart.getExtras() != null) {
+                        String JMessage = intentStart.getExtras().getString(JMessageExtra);
+                        if (JMessage == null || JMessage.length() <= 0) {
+                            if (intentStart.getData() != null) {
+                                result.success(intentStart.getData().toString());
+                                return;
+                            }
+                        } else {
+                            result.success(intentStart.getExtras().getString(JMessageExtra));
+                            return;
+                        }
+                    }
+                    result.success("intent getExtras null");
                 } else {
                     result.notImplemented();
                 }

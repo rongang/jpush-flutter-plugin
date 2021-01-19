@@ -13,7 +13,7 @@ buildscript {
 
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
-        classpath 'com.huawei.agconnect:agcp:1.2.1.301'
+        classpath 'com.huawei.agconnect:agcp:1.4.2.300'
 
     }
 }
@@ -39,15 +39,6 @@ android {
     defaultConfig {
         minSdkVersion 17
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders = [
-                XIAOMI_APPID : "",
-                XIAOMI_APPKEY: "",
-                OPPO_APPKEY : "OP-您的应用对应的OPPO的APPKEY", // OPPO平台注册的appkey
-                OPPO_APPID : "OP-您的应用对应的OPPO的APPID", // OPPO平台注册的appid
-                OPPO_APPSECRET: "OP-您的应用对应的OPPO的APPSECRET"//OPPO平台注册的appsecret
-        ]
-
-
     }
     lintOptions {
         disable 'InvalidPackage'
@@ -63,13 +54,14 @@ dependencies {
 //    implementation 'com.android.support:appcompat-v7:28.+'
     compileOnly files('libs/flutter.jar')
 
+    //小米推送
     implementation 'cn.jiguang.sdk.plugin:xiaomi:3.9.0'//版本号和对应的JPush版本号相同
 
     implementation 'com.huawei.hms:push:5.0.2.300'
-//    implementation 'com.huawei.hms:hianalytics:2.3.0.302'
-    //引入极光-华为插件，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
+    //引入极光-华为推送，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
     implementation 'cn.jiguang.sdk.plugin:huawei:3.9.0'
 
+    //oppo推送
     implementation 'cn.jiguang.sdk.plugin:oppo:3.9.0'
 
 }

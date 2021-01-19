@@ -4,6 +4,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 
+const testAlies = 'testalias02';
+
 void main() => runApp(new MyApp());
 
 class MyApp extends StatefulWidget {
@@ -229,7 +231,7 @@ class _MyAppState extends State<MyApp> {
                 new CustomButton(
                     title: "setAlias",
                     onPressed: () {
-                      jpush.setAlias("testalias01").then((map) {
+                      jpush.setAlias(testAlies).then((map) {
                         setState(() {
                           debugLable = "setAlias success: $map";
                         });

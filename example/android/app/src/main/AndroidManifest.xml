@@ -43,22 +43,11 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
+            <!--oppo action-->
+            <intent-filter>
+                <action android:name="android.notification.oppo.view"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
         </activity>
-        <meta-data
-            android:name="XIAOMI_APPKEY"
-            android:value="${XIAOMI_APPKEY}" />
-
-        <meta-data
-            android:name="XIAOMI_APPID"
-            android:value="${XIAOMI_APPID}" />
-        <meta-data android:name="OPPO_APPKEY"
-            android:value="OP-330b4bb0e32e4d219f50bb5f41e3b6ab" />
-
-        <meta-data android:name="OPPO_APPID"
-            android:value="OP-30458459" />
-
-        <meta-data android:name="OPPO_APPSECRET"
-            android:value="OP-000a4576c9eb4fc588d53af0edb47a3c" />
-
     </application>
 </manifest>

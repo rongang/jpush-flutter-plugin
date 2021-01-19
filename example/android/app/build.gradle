@@ -105,7 +105,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.huawei.hms:push:5.0.2.300'
-//    implementation 'com.huawei.hms:hianalytics:2.3.0.302'
-    //引入极光-华为插件，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
+//    引入极光-华为推送，如果采用此配置，无需拷贝jpush-android-plugin-huawei-v3.x.x.jar文件，也无需配置cn.jpush.android.service.PluginHuaweiPlatformsService组件
     implementation 'cn.jiguang.sdk.plugin:huawei:3.9.0'
 }
+apply plugin: 'com.huawei.agconnect'
